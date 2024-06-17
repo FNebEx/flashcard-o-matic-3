@@ -40,10 +40,10 @@ function DeckDetailsPage() {
       console.log("Can't delete deck", error);
     }
   };
-  
+
   const handleCardDelete = async (id) => {
     const abortController = new AbortController();
-    
+
     try {
       if (window.confirm("Are you sure?")) {
         await deleteCard(id, abortController.signal);
@@ -62,7 +62,9 @@ function DeckDetailsPage() {
     <React.Fragment>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item">Home</li>
+          <li className="breadcrumb-item">
+            <Link to={"/"}>Home</Link>
+          </li>
           <li className="breadcrumb-item active">{deck && deck.name}</li>
         </ol>
       </nav>
