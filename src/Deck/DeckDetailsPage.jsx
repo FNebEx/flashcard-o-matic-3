@@ -47,7 +47,7 @@ function DeckDetailsPage() {
     try {
       if (window.confirm("Are you sure?")) {
         await deleteCard(id, abortController.signal);
-        navigate("/");
+        window.location.reload();
       }
     } catch (error) {
       console.log("Cannot delete card.", error);

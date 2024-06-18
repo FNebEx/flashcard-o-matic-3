@@ -35,7 +35,7 @@ const Form = ({ deckid, card, canEdit, handleSubmit, handleInputChange }) => {
         {!canEdit ? "Done" : "Cancel"}
       </button>
       <button className="btn btn-primary ml-2" type="submit">
-        {!canEdit ? "Submit" : "Save"}
+        {!canEdit ? "Save" : "Submit"}
       </button>
     </form>
   );

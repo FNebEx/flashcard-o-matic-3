@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { createCard, readDeck } from "../utils/api";
 import Form from "./Form";
 
-const NewCardPage =() => {
+const NewCardPage = () => {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({});
   const [formData, setFormData] = useState({ front: "", back: "" });
-  const navigate = useNavigate();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -43,9 +42,9 @@ const NewCardPage =() => {
         ...formData,
         deckId: deck.id,
       };
+
       await createCard(deckId, card);
       setFormData({ front: "", back: "" });
-      navigate(`/decks/${deckId}`);
     } catch (error) {
       console.log("Cannot create card", error);
     }
@@ -55,8 +54,12 @@ const NewCardPage =() => {
     <React.Fragment>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><Link to={'/'}>Home</Link></li>
-          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+          <li className="breadcrumb-item">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+          </li>
           <li className="breadcrumb-item active" aria-current="page">
             Add Card
           </li>
@@ -74,6 +77,6 @@ const NewCardPage =() => {
       />
     </React.Fragment>
   );
-}
+};
 
 export default NewCardPage;
