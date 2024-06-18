@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { readDeck, updateDeck } from "../utils/api";
 
 function DeckEditPage() {
@@ -37,15 +37,13 @@ function DeckEditPage() {
     });
   };
 
-  const handleSubmit =  async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const updatedDeck = {
       ...formData,
       id: deckId,
     };
-
-    console.log(updatedDeck);
 
     try {
       const editedDeck = await updateDeck(updatedDeck);
@@ -59,8 +57,12 @@ function DeckEditPage() {
     <React.Fragment>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><Link to={'/'}>Home</Link></li>
-          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+          <li className="breadcrumb-item">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+          </li>
           <li className="breadcrumb-item active" aria-current="page">
             Edit Deck
           </li>
